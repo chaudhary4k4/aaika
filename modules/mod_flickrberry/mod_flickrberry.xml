@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<extension type="module" version="2.5" client="site" method="upgrade">
+	<name>Flickrberry</name>
+	<author>Axel Ropte</author>
+	<creationDate>June/2014</creationDate>
+	<copyright>Copyright (C) 2014 Webberry Webdesign. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>info@webberry-webdesign.de</authorEmail>
+	<authorUrl>www.extensions.webberry-webdesign.de</authorUrl>
+	<version>1.0.0</version>
+	<description>Shows images from a flickr account as gallery or slideshow. Created by &lt;a href="http://www.extensions.webberry-webdesign.de/" target="_blank"&gt;Webberry Webdesign&lt;/a&gt;. Based on jQuery jFlickrFeed Plugin, fancybox and bxSlider.&lt;br /&gt;&lt;strong&gt;&lt;a href="http://idgettr.com/" target="_blank"&gt;Click here to get the Flickr ID number by a Flickr URL.&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt;Don't know what's happened here? Take a look to &lt;a href="http://extensions.webberry-webdesign.de/extensions/flickrberry/description" target="_blank"&gt;Documentation&lt;/a&gt; ;
+	</description>
+	<updateservers>
+      <server type="extension" priority="1" name="Webberry Updates">http://update.webberry-webdesign.de/flickrberry.xml</server>
+    </updateservers>
+	<files>
+		<folder>assets</folder>
+		<folder>tmpl</folder>
+		<filename module="mod_flickrberry">mod_flickrberry.php</filename>
+		<filename>index.html</filename>
+		<filename>mod_flickrberry.xml</filename>
+	</files>
+	<config>
+		<fields name="params">
+			<fieldset name="basic">
+				<field type="spacer"  />	
+    			<field type="spacer" class="text" label="GENERAL SETTINGS" />
+				<field
+					name="fl_script"
+					type="radio"
+					class="btn-group"
+					default="1"
+					label="Public or group feed:"
+					description="Set public or group feed.">
+					<option value="1">Public</option>
+					<option value="2">Group</option>
+				</field>	
+				<field 
+					name="fl_id"
+					type="text"
+					default=""
+					label="Flickr Id:" 
+					description="Your Flickr Id" />
+				<field
+					name="fl_style"
+					type="radio"
+					class="btn-group"
+					default="gal"
+					label="Style:"
+					description="Select gallery or cycle style.">
+					<option value="gal">Gallery</option>
+					<option value="cyc">Slideshow</option>
+				</field>
+				<field 
+					name="fl_desc"
+					type="textarea"
+					default=""
+					label="Description:" 
+					description="A short description" />
+				<field
+					name="fl_desc_style"
+					type="radio"
+					class="btn-group"
+					default="p"
+					label="Description style:"
+					description="Set style for description.">
+					<option value="p">P</option>
+					<option value="h2">H 2</option>
+					<option value="h3">H 3</option>
+					<option value="h4">H 4</option>
+				</field>
+				<field
+					name="fl_title"
+					type="radio"
+					class="btn-group"
+					default="0"
+					label="Show image title/caption:"
+					description="Show image title in lightbox.">
+					<option value="0">None</option>
+					<option value="1">Yes</option>
+				</field>
+				<field 
+					name="fl_limit"
+					type="text"
+					default="12"
+					label="Image limit (1-20):" 
+					description="Image limit" />
+				<field 
+					name="fl_padding"
+					type="text"
+					default="0"
+					label="Image padding (px):" 
+					description="Set a padding around the images" />
+				<field
+					name="fl_border"
+					type="list"
+					default="0"
+					label="Image border (px):"
+					description="Set border width in Pixel. 'None' will hide border">
+					<option value="0">None</option>
+					<option value="1px">1</option>
+					<option value="2px">2</option>
+					<option value="3px">3</option>
+					<option value="4px">4</option>
+					<option value="5px">5</option>
+					<option value="6px">6</option>
+				</field>
+				<field 
+					name="fl_border_color"
+					type="color"
+					default="#ffffff"
+					label="Border color:" 
+					description="Set border color" />
+				<field
+					name="fl_jquery"
+					type="radio"
+					class="btn-group"
+					default="0"
+					label="Include jQuery:"
+					description="Set it only to yes if jQuery is not included outside this module. This will hide to load jQuery twice.">
+					<option value="0">None</option>
+					<option value="1">Yes</option>
+				</field>
+				<field type="spacer"  hr="true" />
+				<field type="spacer" class="text" label="ONLY GALLERY SETTINGS" />
+				<field 
+					name="fl_width"
+					type="text"
+					default="50"
+					label="Thumb width (px):" 
+					description="Set thumb width in pixel" />
+				<field 
+					name="fl_border_radius"
+					type="text"
+					default="0"
+					label="Border radius (px):" 
+					description="Set border radius in pixel." />
+				<field 
+					name="fl_margin"
+					type="text"
+					default="3"
+					label="Image margin (px):" 
+					description="Set margin between images" />
+				<field
+					name="fl_modal"
+					type="list"
+					default="0"
+					label="Link / Lightbox:"
+					description="Select lightbox. 'Widgetkit' needs 'Widgetkit' component by 'YOOtheme' to work!">
+					<option value="0">Link to Flickr</option>
+					<option value="1">Fancybox</option>
+					<option value="2">Widgetkit ( needs 'Widgetkit' component to work!)</option>
+				</field>
+				<field type="spacer"  hr="true" />
+				<field type="spacer" class="text" label="ONLY SLIDESHOW SETTINGS" />
+				<field
+					name="fl_size"
+					type="radio"
+					class="btn-group"
+					default="image"
+					label="Image size:"
+					description="Which image size should be loaded from Flickr?">
+					<option value="image_m">Small (240px)</option>
+					<option value="image">Medium (500px)</option>
+					<option value="image_b">Big (1024px)</option>
+				</field>
+				<field 
+					name="fl_width_px"
+					type="text"
+					default=""
+					label="Slideshow max width (px):" 
+					description="Set image maximum width in pixel." />
+				<field 
+					name="fl_width_pc"
+					type="text"
+					default=""
+					label="Slideshow max width (%):" 
+					description="Set slideshow maximum width in percent." />
+				<field
+					name="fl_nav"
+					type="radio"
+					class="btn-group"
+					default="1"
+					label="Navigation on hover:"
+					description="Show navigation arrows on hover.">
+					<option value="0">Hide</option>
+					<option value="1">Show</option>
+				</field>
+				<field
+					name="fl_bullets"
+					type="radio"
+					class="btn-group"
+					default="0"
+					label="Navigation bullets:"
+					description="Show navigation bullets.">
+					<option value="0">Hide</option>
+					<option value="1">Show</option>
+				</field>
+				<field
+					name="fl_playstop"
+					type="radio"
+					class="btn-group"
+					default="0"
+					label="Play/Stop buttons:"
+					description="Show play and stop buttons.">
+					<option value="0">Hide</option>
+					<option value="1">Show</option>
+				</field>
+				<field
+					name="fl_auto"
+					type="radio"
+					class="btn-group"
+					default="1"
+					label="Autoplay:"
+					description="Start slideshow after loading.">
+					<option value="0">None</option>
+					<option value="1">Yes</option>
+				</field>
+				<field 
+					name="fl_time"
+					type="text"
+					default="5000"
+					label="Autoplay interval (ms)" 
+					description="Set autoplay interval in milliseconds." />
+			</fieldset>
+			<fieldset name="advanced">
+				<field
+					name="moduleclass_sfx"
+					type="text"
+					default=""
+					label="Module Suffix:"
+					description="Module Suffix" />
+			</fieldset>
+		</fields>
+	</config>
+</extension>
